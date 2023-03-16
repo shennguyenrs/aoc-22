@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -61,6 +62,9 @@ func second(file *os.File) int64 {
 
 	for i := 0; i < n; i += 1 {
 		max, index := findMaximum(lines)
+
+		log.Println(max)
+
 		topThree[i] = max
 		next := index + 1
 		lines = append(lines[:index], lines[next:]...)
@@ -71,13 +75,13 @@ func second(file *os.File) int64 {
 }
 
 func main() {
-	file, err := os.Open("./input_one.txt")
+	file, err := os.Open("../input.txt")
 	if err != nil {
 		panic(err)
 	}
 
 	defer file.Close()
 
-	fmt.Println("The maxium calories:", first(file))
+	// fmt.Println("The maxium calories:", first(file))
 	fmt.Println("The sum of top three calories:", second(file))
 }
